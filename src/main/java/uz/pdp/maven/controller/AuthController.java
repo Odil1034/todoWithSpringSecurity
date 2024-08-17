@@ -4,9 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import uz.pdp.maven.dto.SignUpDTO;
-import uz.pdp.maven.model.AuthUser;
-import uz.pdp.maven.model.Upload;
-import uz.pdp.maven.model.UserStatus;
 import uz.pdp.maven.repository.UserRepo;
 import uz.pdp.maven.service.UserService;
 
