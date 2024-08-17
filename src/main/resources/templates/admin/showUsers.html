@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment::head(~{::title},~{::link})">
+    <title>Show Users</title>
+    <link rel="stylesheet" href="/static/css/showUsers.css">
+</head>
+<body>
+
+<h1>Users</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>T/r</th>
+        <th>Username</th>
+        <th>Roles</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user, iter : ${users}">
+        <td th:text="${iter.count}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.roles.stream().map(role -> role.name).collect(Collectors.joining(', '))}"></td>
+        <td class="actions">
+            <a class="btn btn-block" th:href="@{/admin/block/{id}(id=${user.id})}">Block</a>
+            <a class="btn btn-delete" th:href="@{/admin/delete/{id}(id=${user.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

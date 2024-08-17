@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:replace="fragment :: head(~{::title},~{::link})">
+    <meta charset="UTF-8">
+    <title>Logout Page</title>
+    <link rel="stylesheet" href="/static/css/logout.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Log out</h1>]
+    <form method="post">
+        <div class="alert alert-danger">
+            <h2>Are you sure exit profile?</h2>
+            <button type="submit" class="btn-success">Yes</button>
+            <a href="/main/home" class="btn-danger">No</a>
+        </div>
+    </form>
+</div>
+
+<section th:replace="fragment :: js_links"></section>
+</body>
+</html>

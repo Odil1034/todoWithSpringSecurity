@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment :: head(~{::title},~{::link})">
+    <meta charset="UTF-8">
+    <title>Update Todo</title>
+    <link rel="stylesheet" href="/static/css/update-todo.css">
+</head>
+<body>
+<header>
+    <section th:replace="fragment :: navbar(${upload.getGeneratedName()})"></section>
+</header>
+
+<form th:action="@{/main/todo/update}" th:object="${todo}" method="post">
+    <h2>Update Todo</h2>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}"/>
+    <br/>
+
+    <label for="description">Description:</label>
+    <textarea id="description" th:field="*{description}"></textarea>
+    <br/>
+
+    <label for="deadline">Deadline:</label>
+    <input type="datetime-local" id="deadline" th:field="*{deadline}"/>
+    <br/>
+
+    <input type="hidden" th:field="*{id}"/>
+    <button type="submit">Update</button>
+</form>
+
+<section th:replace="fragment::js_links"></section>
+</body>
+</html>

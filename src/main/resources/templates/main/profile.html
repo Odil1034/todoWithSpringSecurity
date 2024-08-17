@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment :: head(~{::title},~{::link})">
+    <meta charset="UTF-8">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="/static/css/profile.css">
+</head>
+<body>
+
+<section th:replace="fragment :: navbar(${upload.getGeneratedName()})"></section>
+
+<h1>User Info</h1>
+<h3>Name: <span th:text="${user.name}"></span></h3>
+<h3>Username: <span th:text="${user.username}"></span></h3>
+<h3>Password: <span th:text="${user.password}"></span></h3>
+
+<!-- Show roles -->
+<h3>Roles:</h3>
+<ul>
+    <li th:each="role : ${user.roles}" th:text="${role.getCode()}"></li>
+</ul>
+
+</body>
+</html>

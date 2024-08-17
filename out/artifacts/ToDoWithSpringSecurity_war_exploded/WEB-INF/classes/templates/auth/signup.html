@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment :: head(~{::title}, ~{::link})">
+    <meta charset="UTF-8">
+    <title>Sign Page</title>
+    <link rel="stylesheet" href="/static/css/signup.css">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-center mt-5">Sign Up</h1>
+    <form action="/auth/signup" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" name="name" class="form-control" id="name">
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" name="username" class="form-control" id="username">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" id="password">
+        </div>
+        <div class="mb-3">
+            <label for="file" class="form-label">Profile Image</label>
+            <input type="file" name="file" class="form-control" id="file">
+        </div>
+
+        <p class="mb-0">Are you have an account?
+            <a href="/auth/login" class="text-white-50 fw-bold">Log In</a>
+        </p>
+        <button type="submit" class="btn btn-success">Sign Up</button>
+    </form>
+</div>
+
+<section th:replace="fragment :: js_links"></section>
+</body>
+</html>

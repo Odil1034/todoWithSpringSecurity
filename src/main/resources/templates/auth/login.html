@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:replace="fragment :: head(~{::title},~{::link})">
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Login</h1>
+    <h2 class="alert-danger" th:text="${errorMessage}"></h2>
+    <form action="/auth/login" method="post">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" name="username" class="form-control" id="username">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" id="password">
+        </div>
+        <div class="mb-3">
+            <input type="checkbox" name="remMe" class="text-white-50 fw-bold" id="remMe">
+            <label for="remMe" class="form-label">Remember Me</label>
+        </div>
+        <br>
+        <div class="mb-0">Don't have an account?
+            <a href="/auth/signup" class="form-label">Sign Up</a>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Log In</button>
+    </form>
+</div>
+
+<section th:replace="fragment :: js_links"></section>
+</body>
+</html>

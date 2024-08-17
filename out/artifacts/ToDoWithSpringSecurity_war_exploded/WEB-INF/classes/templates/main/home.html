@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment :: head(~{::title},~{::link})">
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/static/css/home.css">
+</head>
+<body>
+
+<section th:replace="fragment :: navbar(${upload.getGeneratedName()})"></section>
+
+<h2>Todo List</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>T/r</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Deadline</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="todo, iter : ${todos}">
+        <td th:text="${iter.index + 1}"></td>
+        <td th:text="${todo.name}"></td>
+        <td th:text="${todo.description}"></td>
+        <td th:text="${todo.deadline}"></td>
+        <td class="actions">
+            <!-- Update Form -->
+            <form method="get" th:action="@{/main/todo/update/{id}(id=${todo.id})}">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+
+            <!-- Delete Form -->
+            <form method="post" th:action="@{/main/todo/delete/{id}(id=${todo.id})}">
+                <input type="hidden" name="_method" value="delete"/>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/main/createTodo" class="create-todo">Create Todo</a>
+
+</body>
+</html>
