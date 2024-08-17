@@ -113,9 +113,9 @@ public class HomeController {
     @PostMapping("todo/search")
     public ModelAndView searchTodo(@RequestParam(name = "searchTodo") String name) {
         ModelAndView modelAndView = new ModelAndView();
-        List<Todo> todos = todoRepo.findByName(name);
 
         AuthUser user = sessionUser.getUser();
+        List<Todo> todos = todoRepo.findByName(name, user.getId());
         Upload upload = uploadRepo.getByUserId(user.getId());
 
         modelAndView.addObject("user", user);

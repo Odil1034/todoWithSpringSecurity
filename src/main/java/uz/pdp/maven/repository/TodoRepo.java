@@ -99,10 +99,12 @@ public class TodoRepo {
         template.update(sql, parameters);
     }
 
-    public List<Todo> findByName(String name) {
-        String sql = "SELECT * FROM todos WHERE name ILIKE :name";
+    public List<Todo> findByName(String name, int ownerId) {
+        String sql = "SELECT * FROM todos WHERE name ILIKE :name AND owner_id = :ownerId";
 
-        List<Todo> todos = template.query(sql, Map.of("name", "%" + name + "%"), rowMapper);
+        List<Todo> todos = template.query(sql, Map.of(
+                "name", "%" + name + "%",
+                "ownerId", ownerId), rowMapper);
 
         return todos;
     }
