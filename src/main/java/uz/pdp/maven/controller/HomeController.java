@@ -1,7 +1,6 @@
 package uz.pdp.maven.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import uz.pdp.maven.config.security.SessionUser;
@@ -11,7 +10,6 @@ import uz.pdp.maven.model.Todo;
 import uz.pdp.maven.model.Upload;
 import uz.pdp.maven.repository.TodoRepo;
 import uz.pdp.maven.repository.UploadRepo;
-import uz.pdp.maven.service.UserService;
 
 import java.util.List;
 
@@ -103,12 +101,27 @@ public class HomeController {
         todo.setOwnerId(user.getId());
 
         todoRepo.update(todo);
-        return "/main/home";
+        return "redirect:/main/home";
     }
 
     @PostMapping("todo/delete/{id}")
     public String deleteTodo(@PathVariable int id) {
         todoRepo.delete(id);
         return "redirect:/main/home";
+    }
+
+    @PostMapping("todo/search")
+    public ModelAndView searchTodo(@RequestParam(name = "searchTodo") String name) {
+        ModelAndView modelAndView = new ModelAndView();
+        List<Todo> todos = todoRepo.findByName(name);
+
+        AuthUser user = sessionUser.getUser();
+        Upload upload = uploadRepo.getByUserId(user.getId());
+
+        modelAndView.addObject("user", user);
+        modelAndView.addObject("upload", upload);
+        modelAndView.addObject("todos", todos);
+        modelAndView.setViewName("/main/home");
+        return modelAndView;
     }
 }

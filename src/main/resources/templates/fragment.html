@@ -35,8 +35,9 @@
                         <a class="nav-link" href="/main/profile">Profile</a>
                     </li>
                 </ul>
-                <form class="d-flex ms-auto">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex ms-auto" method="post" action="/main/todo/search">
+                    <input class="form-control me-2" type="search" name="searchTodo" placeholder="Search"
+                           aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <ul class="navbar-nav ms-auto">

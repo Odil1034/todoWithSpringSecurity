@@ -46,6 +46,7 @@ public class TodoRepo {
         String sql = "delete from todos where id = :id";
         template.update(sql, Map.of("id", id));
     }
+
     public void save(Todo todo) {
         if (todo == null) {
             throw new IllegalArgumentException("Todo must not be null");
@@ -79,6 +80,7 @@ public class TodoRepo {
 
         return todos;
     }
+
     public void update(Todo todo) {
         String sql = "UPDATE todos SET name = :name, " +
                 "description = :description, " +
@@ -95,6 +97,14 @@ public class TodoRepo {
         );
 
         template.update(sql, parameters);
+    }
+
+    public List<Todo> findByName(String name) {
+        String sql = "SELECT * FROM todos WHERE name ILIKE :name";
+
+        List<Todo> todos = template.query(sql, Map.of("name", "%" + name + "%"), rowMapper);
+
+        return todos;
     }
 
 }
